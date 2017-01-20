@@ -34,6 +34,7 @@ if /i "%1"=="nobuild"      set nobuild=1&goto arg-ok
 if /i "%1"=="x86"          set target_arch=ia32&set msbuild_platform=WIN32&set vs_toolset=x86&goto arg-ok
 if /i "%1"=="ia32"         set target_arch=ia32&set msbuild_platform=WIN32&set vs_toolset=x86&goto arg-ok
 if /i "%1"=="x64"          set target_arch=x64&set msbuild_platform=x64&set vs_toolset=x64&goto arg-ok
+if /i "%1"=="arm"          set target_arch=arm&set msbuild_platform=ARM&set vs_toolset=x86_arm&goto vc-arm
 if /i "%1"=="shared"       set library=shared_library&goto arg-ok
 if /i "%1"=="static"       set library=static_library&goto arg-ok
 :arg-ok
@@ -51,6 +52,14 @@ call "%VS140COMNTOOLS%\..\..\vc\vcvarsall.bat" %vs_toolset%
 set GYP_MSVS_VERSION=2015
 echo Using Visual Studio 2015
 goto select-target
+
+:vc-arm
+@rem Look for Visual Studio 2013
+if not defined VS120COMNTOOLS goto vc-set-2012
+call "%VS140COMNTOOLS%\..\..\vc\vcvarsall.bat" %vs_toolset%
+set GYP_MSVS_VERSION=2015
+echo Using Visual Studio Cross Compile x86 ARM
+goto arg-ok
 
 :vc-set-2013
 @rem Look for Visual Studio 2013
