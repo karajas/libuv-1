@@ -64,6 +64,11 @@
           }],
         ],
       },
+      'link_settings': {
+        'library_dirs': [
+          'C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.10586.0\\um\\arm',
+        ]
+      },
       'sources': [
         'common.gypi',
         'include/uv.h',

@@ -55,7 +55,8 @@ goto select-target
 
 :vc-arm
 @rem Look for Visual Studio 2013
-if not defined VS120COMNTOOLS goto vc-set-2012
+if not defined VS120COMNTOOLS goto vc-set-2013
+echo "%VS140COMNTOOLS%\..\..\vc\vcvarsall.bat" %vs_toolset%
 call "%VS140COMNTOOLS%\..\..\vc\vcvarsall.bat" %vs_toolset%
 set GYP_MSVS_VERSION=2015
 echo Using Visual Studio Cross Compile x86 ARM

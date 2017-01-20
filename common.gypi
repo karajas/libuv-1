@@ -127,7 +127,10 @@
         'target_conditions': [
           ['target_arch=="x64"', {
             'msvs_configuration_platform': 'x64'
-          }]
+          }],
+          [ 'target_arch=="arm"', {
+            'msvs_configuration_platform': 'ARM'
+          }],
         ]
       }],
       ['OS in "freebsd dragonflybsd linux openbsd solaris android"', {
